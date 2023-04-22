@@ -37,8 +37,9 @@ import { useKeepAliveStore } from "@/stores/modules/keepAlive";
 import { initDynamicRouter } from "@/routers/modules/dynamicRouter";
 import { CircleClose, UserFilled } from "@element-plus/icons-vue";
 import type { ElForm } from "element-plus";
-import md5 from "js-md5";
-
+// import md5 from "js-md5";
+// import Crypoto from "@/utils/CryptoJS";
+// const cry: any = new Crypoto();
 const router = useRouter();
 const userStore = useUserStore();
 const tabsStore = useTabsStore();
@@ -65,8 +66,10 @@ const login = (formEl: FormInstance | undefined) => {
     loading.value = true;
     try {
       // 1.执行登录接口
-      const { data } = await loginApi({ ...loginForm, password: md5(loginForm.password) });
-      userStore.setToken(data.access_token);
+      // const { data } = await loginApi({ ...loginForm, password: md5(loginForm.password) });
+      const { data } = await loginApi({ ...loginForm, password: loginForm.password });
+      // const { data } = await loginApi({ ...loginForm, password: cry.encrypt(loginForm.password) });
+      userStore.setToken(data["x-access-token"]);
 
       // 2.添加动态路由
       await initDynamicRouter();

@@ -5,7 +5,7 @@ import com.oasis.tga.utils.JwtUtils
 import io.github.mellivorines.wxerp.model.BaseResponse
 import io.github.mellivorines.wxerp.model.LoginInfo
 import io.github.mellivorines.wxerp.repository.UserRepository
-import io.github.mellivorines.wxerp.utils.Md5Utils
+import io.github.mellivorines.wxerp.utils.DESUtils
 import org.springframework.util.ObjectUtils
 import org.springframework.web.bind.annotation.*
 
@@ -27,9 +27,13 @@ class LoginController(var userRepository: UserRepository) {
      */
     @PostMapping(value = ["/login"])
     fun login(@RequestBody login: LoginInfo): BaseResponse {
-        var loginMd5Hash = Md5Utils.calculateMd5Hash(login.password)
-        println("asdaasda"+loginMd5Hash)
-        var user = userRepository.findByNameAndPassword(login.username, login.password)
+
+        println(login.password)
+//        println(DESUtils.desDecrypt(login.password))
+
+//        var user = userRepository.findByNameAndPassword(login.username,DESUtils.desDecrypt(login.password))
+        var user = userRepository.findByNameAndPassword(login.username,login.password)
+        println(user)
         if (!ObjectUtils.isEmpty(user)) {
             val mapper = ObjectMapper()
             val data = mapper.createObjectNode()
@@ -48,7 +52,6 @@ class LoginController(var userRepository: UserRepository) {
     @PostMapping(value = ["/logout"])
     fun logout(): BaseResponse {
             return BaseResponse(200, null, "退出登录成功")
-
     }
 
     @GetMapping(value = ["/menu/list"])
