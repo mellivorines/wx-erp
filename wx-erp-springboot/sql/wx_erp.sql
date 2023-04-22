@@ -128,3 +128,65 @@ CREATE TABLE `wx_stock`
     PRIMARY KEY (`product_id`),
     CONSTRAINT `fk_product_id_stock` FOREIGN KEY (`product_id`) REFERENCES `wx_product` (`id`)
 ) COMMENT ='库存表';
+
+-- ----------------------------
+-- Table structure for wx_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_menu`;
+CREATE TABLE `wx_menu`
+(
+    `id`        int NOT NULL,
+    `path`      varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `name`      varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `component` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `redirect`  varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `parent_id` int                                     DEFAULT NULL,
+    `meta_id`   int                                     DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `fk_meta` (`meta_id`),
+    CONSTRAINT `fk_meta` FOREIGN KEY (`meta_id`) REFERENCES `wx_meta` (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of wx_menu
+-- ----------------------------
+BEGIN;
+INSERT INTO `wx_menu` (`id`, `path`, `name`, `component`, `redirect`, `parent_id`, `meta_id`)
+VALUES (1, '/home/index', 'home', '/home/index', NULL, NULL, 1);
+COMMIT;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+-- ----------------------------
+-- Table structure for wx_meta
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_meta`;
+CREATE TABLE `wx_meta`
+(
+    `id`              int NOT NULL,
+    `icon`            varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `title`           varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `enableLink`      varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `enableHide`      varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `enableFull`      varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `enableAffix`     varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `enableKeepAlive` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    `activeMenu`      varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of wx_meta
+-- ----------------------------
+BEGIN;
+INSERT INTO `wx_meta` (`id`, `icon`, `title`, `enableLink`, `enableHide`, `enableFull`, `enableAffix`,
+                       `enableKeepAlive`, `activeMenu`)
+VALUES (1, 'HomeFilled', '首页', '', 'false', 'false', 'true', 'true', NULL);
+COMMIT;
+
+SET FOREIGN_KEY_CHECKS = 1;
