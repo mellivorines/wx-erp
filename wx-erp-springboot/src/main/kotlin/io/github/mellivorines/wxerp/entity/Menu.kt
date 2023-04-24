@@ -4,31 +4,43 @@ import org.babyfish.jimmer.sql.*
 
 
 /**
- * @Description:
+ * <p>
+ *  菜单表
+ * </p>
  *
- * @author lilinxi
- * @version 1.0.0
- * @since 2023/4/22
+ * @author mellivorines
+ * @date 2023-04-24
  */
 @Entity
 @Table(name = "wx_menu")
 interface Menu {
 
+    /**
+     *  员工ID */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long
 
-    val path: String
+    /**
+     *  路径 */
+    val path: String?
 
-    @Key
-    val name: String
+    /**
+     *  名称 */
+    val name: String?
 
+    /**
+     *  组件 */
     val component: String?
 
-    @OneToOne
-    val myMeta: Meta
-
+    /**
+     *  重定向 */
     val redirect: String?
+
+
+    @OneToOne
+    @JoinColumn(name = "META_ID")
+    val meta:Meta?
 
     @Key
     @ManyToOne
@@ -36,5 +48,5 @@ interface Menu {
     val parent: Menu?
 
     @OneToMany(mappedBy = "parent", orderedProps = [OrderedProp("name")])
-    val childNodes: List<Menu>?
+    val childes: List<Menu>
 }

@@ -1,7 +1,10 @@
 package io.github.mellivorines.wxerp.controller
 
+import io.github.mellivorines.wxerp.entity.Menu
+import io.github.mellivorines.wxerp.entity.by
 import io.github.mellivorines.wxerp.model.BaseResponse
 import io.github.mellivorines.wxerp.repository.MenuRepository
+import org.babyfish.jimmer.sql.kt.fetcher.newFetcher
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -24,7 +27,15 @@ class MenuController(var menuRepository: MenuRepository) {
      */
     @GetMapping(value = ["/list"])
     fun getUser(): BaseResponse {
-        var list = menuRepository.findAll()
+        var list = menuRepository.findAll() {
+            newFetcher(Menu::class).by {
+                allScalarFields()
+                meta {
+                    allScalarFields()
+                }
+                childes { allScalarFields() }
+            }
+        }
         return BaseResponse(200, list, "成功！")
     }
 

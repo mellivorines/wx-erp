@@ -1,11 +1,6 @@
 package io.github.mellivorines.wxerp.utils
 
-import java.nio.charset.Charset
-import java.security.Key
-import java.util.*
 import javax.crypto.Cipher
-import javax.crypto.SecretKeyFactory
-import javax.crypto.spec.DESKeySpec
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
@@ -21,7 +16,7 @@ object DESUtils {
     private val key = "12345678"   // 密钥（8字节）
     private var iv = "87654321"    // 初始向量（8字节）
 
-    fun desDecrypt(ciphertext: String) = decryptData(ciphertext, key,iv)
+    fun desDecrypt(ciphertext: String) = decryptData(ciphertext, key, iv)
 
 
     /**

@@ -1,6 +1,6 @@
 //package io.github.mellivorines.wxerp.config
 //
-//import com.oasis.tga.utils.JwtUtils
+//import com.oasis.tga.utils.io.github.mellivorines.wxerp.utils.JwtUtils
 //import io.github.mellivorines.wxerp.annotation.Auth
 //import io.github.mellivorines.wxerp.repository.UserRepository
 //import jakarta.servlet.http.HttpServletRequest
@@ -41,7 +41,7 @@
 //            true
 //        } else if (!ObjectUtils.isEmpty(token)) {// 校验Token是否合法
 //            // Token合法，放行
-//            JwtUtils.verifyToken(token)
+//            io.github.mellivorines.wxerp.utils.JwtUtils.verifyToken(token)
 //            true
 //        } else {
 //            // Token不合法，返回401错误
@@ -77,12 +77,12 @@
 //
 //    private fun getUserByToken(token: String):Any? {
 //        // 根据Token获取用户信息的逻辑
-//        return JwtUtils.verifyToken(token)
+//        return io.github.mellivorines.wxerp.utils.JwtUtils.verifyToken(token)
 //    }
 //
 //    private fun isValidToken(token: String): Boolean {
 //        // 校验Token的逻辑
-//        JwtUtils.verifyToken(token)
+//        io.github.mellivorines.wxerp.utils.JwtUtils.verifyToken(token)
 //        return true
 //    }
 //}

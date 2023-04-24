@@ -1,38 +1,56 @@
 package io.github.mellivorines.wxerp.entity
 
-import org.babyfish.jimmer.sql.GeneratedValue
-import org.babyfish.jimmer.sql.GenerationType
-import org.babyfish.jimmer.sql.Id
-import org.babyfish.jimmer.sql.Table
+import org.babyfish.jimmer.sql.*
 
 
 /**
- * @Description:
+ * <p>
+ *  元数据表
+ * </p>
  *
- * @author lilinxi
- * @version 1.0.0
- * @since 2023/4/22
+ * @author mellivorines
+ * @date 2023-04-24
  */
+@Entity
 @Table(name = "wx_meta")
 interface Meta {
 
+    /**
+     *  员工ID */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long
 
-    val icon: String
+    /**
+     *  图标 */
+    val icon: String?
 
-    val title: String
+    /**
+     *  标题 */
+    val title: String?
 
-    val enableLink: String
+    /**
+     *  允许链接 */
+    val enableLink: String?
 
-    val enableHide: Boolean
+    /**
+     *  允许隐藏 */
+    val enableHide: String?
 
-    val enableFull: Boolean
+    /**
+     *  允许填充 */
+    val enableFull: String?
 
-    val enableAffix: Boolean
+    /**
+     *  enableAffix
+     */
+    val enableAffix: String?
 
-    val enableKeepAlive: Boolean
+    /**
+     *  允许保持 */
+    val enableKeepAlive: String?
 
+    /**
+     *  激活菜单 */
     val activeMenu: String?
 }

@@ -1,10 +1,10 @@
 package io.github.mellivorines.wxerp.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.oasis.tga.utils.JwtUtils
 import io.github.mellivorines.wxerp.model.BaseResponse
 import io.github.mellivorines.wxerp.model.LoginInfo
 import io.github.mellivorines.wxerp.repository.UserRepository
+import io.github.mellivorines.wxerp.utils.JwtUtils
 import org.springframework.util.ObjectUtils
 import org.springframework.web.bind.annotation.*
 

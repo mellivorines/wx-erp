@@ -1,4 +1,4 @@
-package com.oasis.tga.utils
+package io.github.mellivorines.wxerp.utils
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
@@ -16,17 +16,17 @@ object JwtUtils {
     /**
      * 密钥
      */
-    private val SECRET = "my_secret"
+    private const val SECRET = "my_secret"
 
     /**
      * 过期时间
      */
-    private val EXPIRATION = 1800L //单位为秒
+    private const val EXPIRATION = 1800L //单位为秒
 
     /**
      * 生成用户token,设置token超时时间
      */
-    open fun createToken(user: User): String? {
+    fun createToken(user: User): String? {
         //过期时间
         val expireDate = Date(System.currentTimeMillis() + EXPIRATION * 1000)
         val map: MutableMap<String, Any> = HashMap()
@@ -46,9 +46,8 @@ object JwtUtils {
     /**
      * 校验token并解析token
      */
-    open fun verifyToken(token: String?): Any? {
-        var jwt: DecodedJWT? = null
-        jwt = try {
+    fun verifyToken(token: String?): Any? {
+        var jwt: DecodedJWT? = try {
             val verifier: JWTVerifier = JWT.require(Algorithm.HMAC256(SECRET)).build()
             verifier.verify(token)
             //decodedJWT.getClaim("属性").asString()  获取负载中的属性值
@@ -58,8 +57,8 @@ object JwtUtils {
             //解码异常则抛出异常
             return null
         }
-        logger.info("jwt:{}",jwt!!.getClaims())
-        return jwt!!.getClaims()
+        logger.info("jwt:{}", jwt!!.getClaims())
+        return jwt.claims
     }
 
 
