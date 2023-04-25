@@ -39,7 +39,7 @@ interface Menu {
 
 
     @OneToOne
-    @JoinColumn(name = "META_ID")
+    @JoinColumn(name = "meta_id")
     val meta:Meta?
 
     @Key
