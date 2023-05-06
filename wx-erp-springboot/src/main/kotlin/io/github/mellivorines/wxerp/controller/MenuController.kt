@@ -27,13 +27,13 @@ class MenuController(var menuRepository: MenuRepository) {
      */
     @GetMapping(value = ["/list"])
     fun getUser(): BaseResponse {
-        var list = menuRepository.findAll() {
+        val list = menuRepository.findAll {
             newFetcher(Menu::class).by {
                 allScalarFields()
                 meta {
                     allScalarFields()
                 }
-                childes { allScalarFields() }
+                childNodes { allScalarFields() }
             }
         }
         return BaseResponse(200, list, "成功！")

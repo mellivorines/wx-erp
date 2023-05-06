@@ -16,7 +16,7 @@
     <properties>
         <java.version>17</java.version>
         <kotlin.version>1.7.22</kotlin.version>
-        <jimmer.version>0.7.22</jimmer.version>
+        <jimmer.version>0.7.49</jimmer.version>
         <ksp.version>1.4</ksp.version>
     </properties>
     <dependencies>
@@ -118,7 +118,7 @@
                     <dependency>
                         <groupId>org.babyfish.jimmer</groupId>
                         <artifactId>jimmer-ksp</artifactId>
-                        <version>0.7.22</version>
+                        <version>${jimmer.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>

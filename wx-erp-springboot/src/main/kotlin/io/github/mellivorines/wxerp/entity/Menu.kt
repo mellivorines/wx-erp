@@ -37,7 +37,6 @@ interface Menu {
      *  重定向 */
     val redirect: String?
 
-
     @OneToOne
     @JoinColumn(name = "meta_id")
     val meta:Meta?
@@ -48,5 +47,5 @@ interface Menu {
     val parent: Menu?
 
     @OneToMany(mappedBy = "parent", orderedProps = [OrderedProp("name")])
-    val childes: List<Menu>
+    val childNodes: List<Menu>
 }
